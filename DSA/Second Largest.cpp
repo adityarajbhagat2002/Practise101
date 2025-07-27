@@ -19,8 +19,7 @@ class Solution {
        
         }
             
-        return secondmax;
-        
+        return (secondmax== INT_MAX) ? -1 : secondmax;
         
 
     }
