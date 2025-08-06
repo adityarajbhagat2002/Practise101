@@ -1,4 +1,4 @@
-https://leetcode.com/problems/max-consecutive-ones/description/
+https://leetcode.com/problems/max-consecslackutive-ones/description/
 
 
 class Solution {
