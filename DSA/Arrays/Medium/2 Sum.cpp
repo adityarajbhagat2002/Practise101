@@ -43,7 +43,7 @@ Space Complexity: O(1)       // No extra space used
 
 
 // Solution 2: Using Map (Hash Map) for faster lookup - O(n) time
-#include <map>  // or use unordered_map for faster average lookup
+#include <map>  // or use map  for faster average lookup , as worst case for unordered_map is o(n) and for map is o(logn)
 
 class Solution {
 public:

@@ -98,7 +98,7 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         int count = 0;
-        int element = 0;
+        int element;
 
         // Step 1: Find candidate for majority element
         for (int i = 0; i < nums.size(); i++) {
