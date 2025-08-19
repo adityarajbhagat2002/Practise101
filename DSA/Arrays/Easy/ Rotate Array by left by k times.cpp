@@ -40,6 +40,15 @@ When To Use:
 - You need **fast performance** with large arrays
 - A brute force shifting method would be too slow for big `k`
 
+So the difference is which side’s elements are being moved:
+
+Right rotation → move elements from end → front.
+
+Left rotation → move elements from front → end.
+
+so therefore full swap from (start to end) is done fist in Right rotation, and 
+ (start to end) swap is done ar last in Left rotation.
+
 Time Complexity: O(n)      // 3 reverse operations, each O(n)
 Space Complexity: O(1)     // In-place modification
 */

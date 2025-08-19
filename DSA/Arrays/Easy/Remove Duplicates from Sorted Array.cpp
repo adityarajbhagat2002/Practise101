@@ -31,6 +31,14 @@ Why This Works:
   → `j` to scan the array from left to right
 - Whenever a new unique element is found, we place it at the next position after `i`
 
+Example 
+
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+
 When To Use:
 -------------
 - When the array is **sorted** and you need to remove duplicates **in-place**
