@@ -1,3 +1,5 @@
+https://leetcode.com/problems/longest-consecutive-sequence/description/
+
 // ****************************************************************************************
 // Problem: Longest Consecutive Sequence (LeetCode 128)
 // Language: C++
@@ -212,4 +214,56 @@ Summary:
 */
 
 
+//Using hash set as a optimal appraoch 
 
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+
+        // If the array is empty, there is no sequence
+        if(nums.empty()) return 0;
+
+        // HashSet to store all unique numbers
+        unordered_set<int> st;
+
+        // Insert all elements into the set
+        // This removes duplicates and allows O(1) lookups
+        for(int i = 0; i < nums.size(); i++) {
+            st.insert(nums[i]);
+        }
+
+        int longest = 1;   // Stores the longest sequence length found
+
+        // Loop through each number in the set
+        for(auto it : st) {
+
+            // Check if it is the START of a sequence
+            // If (it - 1) does NOT exist, then this is a starting number
+            if(st.find(it - 1) == st.end()) {
+
+                int currentNum = it;   // Start of sequence
+                int count = 1;         // Length of current sequence
+
+                // Keep checking the next consecutive numbers
+                while(st.find(currentNum + 1) != st.end()) {
+
+                    currentNum = currentNum + 1;   // Move to next number
+                    count = count + 1;             // Increase sequence length
+                }
+
+                // Update the longest sequence found so far
+                longest = max(longest, count);
+            }
+        }
+
+        // Return the maximum length of consecutive sequence
+        return longest;
+    }
+};
+
+//Time complexity is O(n) using a hash set for constant lookups, and space complexity is O(n) for storing elements.
+//

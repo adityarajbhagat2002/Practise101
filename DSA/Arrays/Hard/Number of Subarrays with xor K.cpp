@@ -1,3 +1,5 @@
+https://www.geeksforgeeks.org/problems/count-subarray-with-given-xor/1
+
 // Number of Subarrays with XOR == K (TakeUForward)
 // ==================================================
 
@@ -94,7 +96,8 @@ class Solution {
         return count;
     }
 };
- // simple fomula is this   int x= xr^k;   xor of all the elements  and againg xor with K will give X which is the required for the sum do the dry run
+ // simple fomula is this   int x= xr^k;   xor of all the elements  and 
+ //againg xor with K will give X which is the required for the sum do the dry run
 // look into the notes a bit discriptive
 
 // 🔹 Summary

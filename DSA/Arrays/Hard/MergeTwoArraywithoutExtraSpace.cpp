@@ -2,15 +2,19 @@
 Merge Two Sorted Arrays Without Extra Space - Complete Note
 
 Problem:
-Given two sorted arrays nums1 and nums2 of sizes m and n respectively, merge nums2 into nums1 such that nums1 becomes a fully sorted array of size m+n. Extra space beyond nums1 and nums2 is not allowed.
+Given two sorted arrays nums1 and nums2 of sizes m and n respectively, 
+merge nums2 into nums1 such that nums1 becomes a fully sorted array of size m+n. 
+Extra space beyond nums1 and nums2 is not allowed.
 
 ---
 
 Logic and Intuition:
 - Since nums1 has enough space at the end, merge from the back to avoid overwriting elements.
-- Use two pointers starting from the ends of initialized parts of nums1 and nums2 and place the larger element at the end of nums1.
+- Use two pointers starting from the ends of initialized parts of nums1 and nums2 and place the larger 
+element at the end of nums1.
 - If elements remain in nums2, copy them into nums1.
-- Alternatively, the Gap method (Shell sort style) can be used by treating nums1 and nums2 as a single combined array and comparing/swapping elements with a gap, reducing the gap each iteration until sorted.
+- Alternatively, the Gap method (Shell sort style) can be used by treating nums1 and nums2 as a single 
+combined array and comparing/swapping elements with a gap, reducing the gap each iteration until sorted.
 
 ---
 

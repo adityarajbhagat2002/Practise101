@@ -1,3 +1,4 @@
+https://leetcode.com/problems/majority-element-ii/description/
 /*
 Majority Element II: Problem Analysis, Approaches, and Solutions
 ================================================================
@@ -129,43 +130,74 @@ using namespace std;
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        int count1 = 0, count2 = 0;
-        int ele1 = INT_MIN;
-        int ele2 = INT_MIN;
-        int n = nums.size();
 
+        int count1 = 0, count2 = 0;     // Counters for two possible majority elements
+        int ele1 = INT_MIN;             // First candidate element
+        int ele2 = INT_MIN;             // Second candidate element
+        int n = nums.size();            // Size of the array
+
+        // -------- FIRST PASS: Find potential candidates --------
         for (int i = 0; i < n; i++) {
+
+            // If first counter is zero and current number is not ele2,
+            // make current number the first candidate
             if (count1 == 0 && nums[i] != ele2) {
-                count1 = 1;
-                ele1 = nums[i];
-            } else if (count2 == 0 && nums[i] != ele1) {
-                count2 = 1;
-                ele2 = nums[i];
-            } else if (ele1 == nums[i]) {
-                count1++;
-            } else if (ele2 == nums[i]) {
-                count2++;
-            } else {
-                count1--;
+                count1 = 1;             // Start counting this new candidate
+                ele1 = nums[i];         // Set first candidate
+            } 
+
+            // Else if second counter is zero and current number is not ele1,
+            // make current number the second candidate
+            else if (count2 == 0 && nums[i] != ele1) {
+                count2 = 1;             // Start counting this new candidate
+                ele2 = nums[i];         // Set second candidate
+            } 
+
+            // If current number matches first candidate
+            else if (ele1 == nums[i]) {
+                count1++;               // Increase count of first candidate
+            } 
+
+            // If current number matches second candidate
+            else if (ele2 == nums[i]) {
+                count2++;               // Increase count of second candidate
+            } 
+
+            // If current number matches neither candidate
+            else {
+                count1--;               // Decrease both counts
                 count2--;
             }
         }
 
-        // Verification step
-        vector<int> ans;
-        count1 = 0; count2 = 0;
+        // -------- SECOND PASS: Verify the candidates --------
+
+        vector<int> ans;                // To store final majority elements
+        count1 = 0;                     // Reset counters
+        count2 = 0;
+
+        // Count actual occurrences of ele1 and ele2
         for (int i = 0; i < n; i++) {
-            if (nums[i] == ele1) count1++;
-            else if (nums[i] == ele2) count2++;
+            if (nums[i] == ele1) 
+                count1++;              // Count occurrences of ele1
+            else if (nums[i] == ele2) 
+                count2++;              // Count occurrences of ele2
         }
 
-        int threshold = n / 3 + 1;
-        if (count1 >= threshold) ans.push_back(ele1);
-        if (count2 >= threshold) ans.push_back(ele2);
+        int threshold = n / 3 + 1;      // Minimum count needed to be majority (> n/3)
 
-        return ans;
+        // If ele1 appears enough times, add to answer
+        if (count1 >= threshold) 
+            ans.push_back(ele1);
+
+        // If ele2 appears enough times, add to answer
+        if (count2 >= threshold) 
+            ans.push_back(ele2);
+
+        return ans;                     // Return all valid majority elements
     }
 };
+
 ------------------------------------
 /*
 ---------------------------------------------------------

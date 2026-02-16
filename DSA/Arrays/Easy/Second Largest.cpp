@@ -8,7 +8,7 @@ class Solution {
     int getSecondLargest(vector<int> &arr) {
         int largest = INT_MIN;      // Will hold the largest element
         int sLargest = INT_MIN;     // Will hold the second largest element
-        int n = arr.size();
+        int n = asrr.size();
 
         for (int i = 0; i < n; i++) {
             if (arr[i] > largest) {
@@ -22,6 +22,12 @@ class Solution {
         return (sLargest == INT_MIN) ? -1 : sLargest;
     }
 };
+
+else if(arr[i]<largest && arr[i]>slargest){
+    slargest=arr[i];
+}
+
+return slargest
 
 /*
 Why This Works:

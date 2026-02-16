@@ -1,3 +1,4 @@
+https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1
 /*
 Find the Missing and Repeating Number
 
@@ -40,10 +41,74 @@ Brute Force:
 - For each number from 1 to n, count appearances in the array.
 - Identify missing (count = 0) and repeating (count = 2).
 
+
+vector<int> findTwoElement(vector<int>& arr) {
+
+    int n = arr.size();            // Size of array
+
+    int repeating = -1;
+    int missing = -1;
+
+    // Check each number from 1 to n
+    for(int i = 1; i <= n; i++){
+
+        int count = 0;             // Count occurrences of i
+
+        // Loop through array
+        for(int j = 0; j < n; j++){
+            if(arr[j] == i){
+                count++;
+            }
+        }
+
+        // If appears twice → repeating
+        if(count == 2)
+            repeating = i;
+
+        // If appears zero times → missing
+        if(count == 0)
+            missing = i;
+    }
+
+    return {repeating, missing};
+}
+
+
+
+
+
 Hashing:
 - Use a frequency array of size n+1 initialized to 0.
 - Increment count for each number in the input.
 - Identify the missing and repeating based on frequency counts.
+
+
+vector<int> findTwoElement(vector<int>& arr) {
+
+    int n = arr.size();
+
+    vector<int> freq(n+1, 0);   // Frequency array from 1 to n
+
+    // Count each number
+    for(int i = 0; i < n; i++){
+        freq[arr[i]]++;
+    }
+
+    int repeating = -1;
+    int missing = -1;
+
+    // Check frequencies
+    for(int i = 1; i <= n; i++){
+        if(freq[i] == 2)
+            repeating = i;
+        if(freq[i] == 0)
+            missing = i;
+    }
+
+    return {repeating, missing};
+}
+
+
 
 Mathematical Approach:
 - Sum of numbers from 1 to n = n(n+1)/2.
@@ -51,6 +116,8 @@ Mathematical Approach:
 - Calculate sum and sum of squares of array elements.
 - Let repeating number = X, missing number = Y.
 - Use two equations derived from sums and sums of squares to solve for X and Y.
+
+
 
 XOR Approach:
 - XOR all elements in the array and numbers from 1 to n.
@@ -85,30 +152,41 @@ Code (Mathematical Approach):
 #include <cmath>
 using namespace std;
 
-class Solution {
-public:
-    vector<int> findTwoElement(vector<int> &arr) {
-        long long n = arr.size();
-        long long sum_n = (n * (n + 1)) / 2;
-        long long sum_sq_n = (n * (n + 1) * (2 * n + 1)) / 6;
+vector<int> findTwoElement(vector<int> &arr) {
 
-        long long sum_arr = 0, sum_sq_arr = 0;
-        for (int num : arr) {
-            sum_arr += (long long)num;
-            sum_sq_arr += (long long)num * (long long)num;
-        }
+    long long n = arr.size();
 
-        long long val1 = sum_arr - sum_n;          // X - Y
-        long long val2 = sum_sq_arr - sum_sq_n;    // X² - Y²
+    // Sum from 1 to n
+    long long sum_n = n * (n + 1) / 2;
 
-        val2 = val2 / val1;    // X + Y
+    // Sum of squares from 1 to n
+    long long sum_sq_n = n * (n + 1) * (2*n + 1) / 6;
 
-        long long X = (val1 + val2) / 2;
-        long long Y = val2 - X;
+    long long sum_arr = 0;
+    long long sum_sq_arr = 0;
 
-        return {(int)X, (int)Y};  // Repeating, Missing
+    // Calculate sum and square sum of array
+    for(int num : arr){
+        sum_arr += num;
+        sum_sq_arr += (long long)num * num;
     }
-};
+
+    // X - Y
+    long long val1 = sum_arr - sum_n;
+
+    // X² - Y²
+    long long val2 = sum_sq_arr - sum_sq_n;
+
+    // (X+Y) = val2 / val1
+    val2 = val2 / val1;
+
+    // Solve equations
+    long long X = (val1 + val2) / 2;
+    long long Y = val2 - X;
+
+    return {(int)X, (int)Y};
+}
+
 
 /*
 Code (XOR Approach):

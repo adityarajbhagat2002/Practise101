@@ -93,22 +93,38 @@ C++ Code (Optimal Approach):
 #include <unordered_map>
 using namespace std;
 
+
+
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
-        unordered_map<int,int> mpp;
-        mpp[0]=1;             // Sum zero before elements is "seen" once
-        int presum=0, count=0;
 
-        for(int i=0;i<nums.size();i++){
-            presum+=nums[i];
-            int remove= presum-k;
-            count+=mpp[remove];
-            mpp[presum] += 1;
+        unordered_map<int,int> mpp;   // Stores prefixSum -> how many times it occurred
+
+        mpp[0] = 1;                   // Base case: prefix sum 0 occurs once before start
+
+        int presum = 0;               // Running prefix sum
+        int count = 0;                // Result
+
+        // Traverse the array
+        for(int i = 0; i < nums.size(); i++) {
+
+            presum += nums[i];        // Add current element to prefix sum
+
+            int remove = presum - k; // Required previous prefix sum
+
+            // If that prefix sum existed before,
+            // then those many subarrays ends here with sum k
+            count += mpp[remove];
+
+            // Store/update current prefix sum frequency
+            mpp[presum]++;
         }
-        return count;
+
+        return count;                // Return total count
     }
 };
+
 
 /*
 Summary:

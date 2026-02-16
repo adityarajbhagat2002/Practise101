@@ -1,8 +1,10 @@
+https://leetcode.com/problems/merge-intervals/description/
 /*
 Merge Overlapping Intervals - Complete Guide
 
 Problem:
-Given a collection of intervals, merge all overlapping intervals and return the resulting list of disjoint intervals that cover all intervals in the input.
+Given a collection of intervals, merge all overlapping intervals and return the resulting 
+list of disjoint intervals that cover all intervals in the input.
 
 Example:
 Input: [[1,3],[2,6],[8,10],[15,18]]
@@ -93,25 +95,43 @@ Code:
 #include <algorithm>
 using namespace std;
 
+#include <vector>
+#include <algorithm>
+using namespace std;
+
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        int n = intervals.size();
-        vector<vector<int>> ans;
+
+        int n = intervals.size();            // Get number of intervals
+        vector<vector<int>> ans;             // This will store merged intervals
+
+        // If there are no intervals, return empty result
         if(n == 0) return ans;
 
+        // Sort intervals based on starting value (and end if tie)
         sort(intervals.begin(), intervals.end());
 
+        // Loop through each interval one by one
         for (int i = 0; i < n; i++) {
+
+            // If ans is empty OR current interval does NOT overlap with last merged one
             if (ans.empty() || ans.back()[1] < intervals[i][0]) {
+
+                // No overlap → push current interval as new
                 ans.push_back(intervals[i]);
-            } else {
+            } 
+            else {
+                // Overlap exists → merge by extending end point
                 ans.back()[1] = max(ans.back()[1], intervals[i][1]);
             }
         }
+
+        // Return merged list
         return ans;
     }
 };
+
 /*
 ----------------------------------------------------------
 Edge Cases:

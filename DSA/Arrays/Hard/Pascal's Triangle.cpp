@@ -1,3 +1,4 @@
+https://leetcode.com/problems/pascals-triangle/description/
 /*
 Pascal's Triangle: Types, Logic, Intuition, and Solutions
 =========================================================
@@ -146,5 +147,6 @@ Coding and Interview Notes
 
 ---------------------------------------------------------
 
-All important types, methods, optimizations, tricks, formulas, as well as detailed sample code and coding tips from the video are covered above with clear transitions from brute force to optimal approaches.
+All important types, methods, optimizations, tricks, formulas, as well as detailed sample code and 
+coding tips from the video are covered above with clear transitions from brute force to optimal approaches.
 */

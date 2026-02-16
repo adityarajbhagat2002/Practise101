@@ -1,3 +1,5 @@
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
+
 // Best Time to Buy and Sell Stock (LeetCode 121)
 // ✅ Find the maximum profit from one buy-and-sell transaction
 // Language: C++

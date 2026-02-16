@@ -46,8 +46,10 @@ Right rotation → move elements from end → front.
 
 Left rotation → move elements from front → end.
 
-so therefore full swap from (start to end) is done fist in Right rotation, and 
- (start to end) swap is done ar last in Left rotation.
+
+ here left and right rotaion simply means  rotate the k right elements which is the whole array can be rotated  and 
+ for left rotation the  rotate the first k left elements , so whole array reversal doesn;t make sence as the the rotation 
+ done by right 
 
 Time Complexity: O(n)      // 3 reverse operations, each O(n)
 Space Complexity: O(1)     // In-place modification
